@@ -2,10 +2,10 @@ import { router } from '@kit.ArkUI';
 import { PhotoService } from '../services/PhotoService';
 import { PhotoModel } from '../models/PhotoModel';
 import { AppTheme } from '../theme/AppTheme';
-import { promptAction } from '@kit.ArkUI';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { UIUtils } from '../utils/UIUtils';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Entry
 @Component
@@ -13,7 +13,7 @@ struct PhotoDetailPage {
   @State photos: PhotoModel[] = [];
   @State currentIndex: number = 0;
   @State showToolbar: boolean = true;
-  @State scale: number = 1;
+  @State imageScale: number = 1;
   private photoService: PhotoService = new PhotoService(getContext(this));
   private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Horizontal });
 
@@ -48,32 +48,32 @@ struct PhotoDetailPage {
     const photo = this.photos[this.currentIndex];
     
     try {
-      await promptAction.showDialog({
+      const result = await UIUtils.showConfirmDialog({
         title: '删除照片',
         message: '确定要删除这张照片吗？',
         buttons: [
           { text: '取消', color: AppTheme.TEXT_SECONDARY },
           { text: '删除', color: AppTheme.ERROR_COLOR }
         ]
-      }).then(async (result) => {
-        if (result.index === 1 && photo.id) {
-          await this.photoService.deletePhoto(photo.id, photo.filePath);
-          
-          // 如果删除后没有照片了，返回上一页
-          if (this.photos.length === 1) {
-            router.back();
-          } else {
-            // 重新加载照片列表
-            await this.loadPhotos();
-            // 调整当前索引
-            if (this.currentIndex >= this.photos.length) {
-              this.currentIndex = this.photos.length - 1;
-            }
-          }
-          
-          promptAction.showToast({ message: '已删除', duration: 2000 });
-        }
       });
+      
+      if (result.index === 1 && photo.id) {
+        await this.photoService.deletePhoto(photo.id, photo.filePath);
+        
+        // 如果删除后没有照片了，返回上一页
+        if (this.photos.length === 1) {
+          router.back();
+        } else {
+          // 重新加载照片列表
+          await this.loadPhotos();
+          // 调整当前索引
+          if (this.currentIndex >= this.photos.length) {
+            this.currentIndex = this.photos.length - 1;
+          }
+        }
+        
+        UIUtils.showSuccess('已删除');
+      }
     } catch (err) {
       logger.error('PhotoDetailPage', `Delete photo failed: ${JSON.stringify(err)}`);
     }
@@ -103,18 +103,18 @@ struct PhotoDetailPage {
                 .width('100%')
                 .height('100%')
                 .objectFit(ImageFit.Contain)
-                .scale({ x: this.scale, y: this.scale })
+                .scale({ x: this.imageScale, y: this.imageScale })
                 .gesture(
                   PinchGesture()
                     .onActionUpdate((event: GestureEvent) => {
-                      this.scale = event.scale;
+                      this.imageScale = event.scale;
                     })
                     .onActionEnd(() => {
-                      if (this.scale < 1) {
-                        this.scale = 1;
+                      if (this.imageScale < 1) {
+                        this.imageScale = 1;
                       }
-                      if (this.scale > 3) {
-                        this.scale = 3;
+                      if (this.imageScale > 3) {
+                        this.imageScale = 3;
                       }
                     })
                 )
@@ -131,7 +131,7 @@ struct PhotoDetailPage {
         .loop(false)
         .onChange((index: number) => {
           this.currentIndex = index;
-          this.scale = 1;
+          this.imageScale = 1;
         })
       }
 

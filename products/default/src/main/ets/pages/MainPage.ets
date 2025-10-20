@@ -20,10 +20,9 @@ struct MainPage {
         Blank()
 
         Button() {
-          Image($r('sys.symbol.settings'))
-            .width(24)
-            .height(24)
-            .fillColor(AppTheme.TEXT_PRIMARY)
+          Text('⚙️')
+            .fontSize(24)
+            .fontColor(AppTheme.TEXT_PRIMARY)
         }
         .backgroundColor(Color.Transparent)
         .width(40)
@@ -46,12 +45,12 @@ struct MainPage {
         TabContent() {
           DiaryListPage()
         }
-        .tabBar(this.TabBuilder(0, '日记', $r('sys.symbol.book')))
+        .tabBar(this.TabBuilder(0, '日记', ''))
 
         TabContent() {
           PhotoGridPage()
         }
-        .tabBar(this.TabBuilder(1, '相册', $r('sys.symbol.photo')))
+        .tabBar(this.TabBuilder(1, '相册', ''))
       }
       .barPosition(BarPosition.End)
       .barMode(BarMode.Fixed)
@@ -67,12 +66,11 @@ struct MainPage {
   }
 
   @Builder
-  TabBuilder(index: number, title: string, icon: Resource) {
+  TabBuilder(index: number, title: string, icon: string) {
     Column() {
-      Image(icon)
-        .width(24)
-        .height(24)
-        .fillColor(this.currentTabIndex === index ? AppTheme.PRIMARY_COLOR : AppTheme.TEXT_SECONDARY)
+      Text(index === 0 ? '📖' : '📷')
+        .fontSize(24)
+        .fontColor(this.currentTabIndex === index ? AppTheme.PRIMARY_COLOR : AppTheme.TEXT_SECONDARY)
         .margin({ bottom: 4 })
         .animation({
           duration: 200,

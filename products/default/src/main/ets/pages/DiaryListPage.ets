@@ -2,10 +2,10 @@ import { router } from '@kit.ArkUI';
 import { DiaryService } from '../services/DiaryService';
 import { DiaryModel, MOOD_CONFIG } from '../models/DiaryModel';
 import { AppTheme } from '../theme/AppTheme';
-import { promptAction } from '@kit.ArkUI';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { UIUtils } from '../utils/UIUtils';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Component
 export struct DiaryListPage {
@@ -28,7 +28,7 @@ export struct DiaryListPage {
       logger.info('DiaryListPage', `Loaded ${this.diaries.length} diaries`);
     } catch (err) {
       logger.error('DiaryListPage', `Load diaries failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({ message: '加载失败', duration: 2000 });
+      UIUtils.showError('加载失败');
     } finally {
       this.isLoading = false;
     }
@@ -39,20 +39,20 @@ export struct DiaryListPage {
    */
   async deleteDiary(diary: DiaryModel) {
     try {
-      await promptAction.showDialog({
+      const result = await UIUtils.showConfirmDialog({
         title: '删除日记',
         message: '确定要删除这条日记吗？',
         buttons: [
           { text: '取消', color: AppTheme.TEXT_SECONDARY },
           { text: '删除', color: AppTheme.ERROR_COLOR }
         ]
-      }).then(async (result) => {
-        if (result.index === 1 && diary.id) {
-          await this.diaryService.deleteDiary(diary.id);
-          await this.loadDiaries();
-          promptAction.showToast({ message: '已删除', duration: 2000 });
-        }
       });
+      
+      if (result.index === 1 && diary.id) {
+        await this.diaryService.deleteDiary(diary.id);
+        await this.loadDiaries();
+        UIUtils.showSuccess('已删除');
+      }
     } catch (err) {
       logger.error('DiaryListPage', `Delete diary failed: ${JSON.stringify(err)}`);
     }

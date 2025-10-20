@@ -1,9 +1,10 @@
 import { relationalStore } from '@kit.ArkData';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { Logger } from '@ohos/common';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { DiaryModel } from '../models/DiaryModel';
 import { PhotoModel } from '../models/PhotoModel';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 const DB_NAME = 'SecretSpace.db';
 const DB_VERSION = 1;
 
@@ -40,8 +41,9 @@ export class DatabaseHelper {
       await this.createTables();
       logger.info('DatabaseHelper', 'Database initialized successfully');
     } catch (err) {
-      logger.error('DatabaseHelper', `Failed to init database: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DatabaseHelper', `Failed to init database: ${error.message}`);
+      throw new Error(`Failed to init database: ${error.message}`);
     }
   }
 

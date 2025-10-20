@@ -1,8 +1,9 @@
 import { DatabaseHelper } from '../database/DatabaseHelper';
 import { DiaryModel } from '../models/DiaryModel';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { Logger } from '@ohos/common';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 /**
  * 日记业务服务类
@@ -33,8 +34,9 @@ export class DiaryService {
       logger.info('DiaryService', `Diary created with id: ${id}`);
       return id;
     } catch (err) {
-      logger.error('DiaryService', `Failed to create diary: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DiaryService', `Failed to create diary: ${error.message}`);
+      throw new Error(`Failed to create diary: ${error.message}`);
     }
   }
 
@@ -61,8 +63,9 @@ export class DiaryService {
       await this.dbHelper.updateDiary(diary);
       logger.info('DiaryService', `Diary updated: ${id}`);
     } catch (err) {
-      logger.error('DiaryService', `Failed to update diary: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DiaryService', `Failed to update diary: ${error.message}`);
+      throw new Error(`Failed to update diary: ${error.message}`);
     }
   }
 
@@ -74,8 +77,9 @@ export class DiaryService {
       await this.dbHelper.deleteDiary(id);
       logger.info('DiaryService', `Diary deleted: ${id}`);
     } catch (err) {
-      logger.error('DiaryService', `Failed to delete diary: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DiaryService', `Failed to delete diary: ${error.message}`);
+      throw new Error(`Failed to delete diary: ${error.message}`);
     }
   }
 
@@ -87,8 +91,9 @@ export class DiaryService {
       const diaries = await this.dbHelper.queryAllDiaries();
       return diaries;
     } catch (err) {
-      logger.error('DiaryService', `Failed to get diaries: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DiaryService', `Failed to get diaries: ${error.message}`);
+      throw new Error(`Failed to get diaries: ${error.message}`);
     }
   }
 
@@ -99,8 +104,9 @@ export class DiaryService {
     try {
       return await this.dbHelper.queryDiaryById(id);
     } catch (err) {
-      logger.error('DiaryService', `Failed to get diary: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('DiaryService', `Failed to get diary: ${error.message}`);
+      throw new Error(`Failed to get diary: ${error.message}`);
     }
   }
 

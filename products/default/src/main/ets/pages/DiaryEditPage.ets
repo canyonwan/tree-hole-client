@@ -4,10 +4,10 @@ import { DiaryModel, MoodType } from '../models/DiaryModel';
 import { AppTheme } from '../theme/AppTheme';
 import { MoodSelector } from '../components/MoodSelector';
 import { TagManager } from '../components/TagManager';
-import { promptAction } from '@kit.ArkUI';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { UIUtils } from '../utils/UIUtils';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Entry
 @Component
@@ -46,7 +46,7 @@ struct DiaryEditPage {
       }
     } catch (err) {
       logger.error('DiaryEditPage', `Load diary failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({ message: '加载失败', duration: 2000 });
+      UIUtils.showError('加载失败');
     } finally {
       this.isLoading = false;
     }
@@ -57,7 +57,7 @@ struct DiaryEditPage {
    */
   async saveDiary() {
     if (!this.title.trim() && !this.content.trim()) {
-      promptAction.showToast({ message: '请输入内容', duration: 2000 });
+      UIUtils.showError('请输入内容');
       return;
     }
 
@@ -85,11 +85,11 @@ struct DiaryEditPage {
         logger.info('DiaryEditPage', 'Diary created');
       }
 
-      promptAction.showToast({ message: '保存成功', duration: 2000 });
+      UIUtils.showSuccess('保存成功');
       router.back();
     } catch (err) {
       logger.error('DiaryEditPage', `Save diary failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({ message: '保存失败', duration: 2000 });
+      UIUtils.showError('保存失败');
     } finally {
       this.isSaving = false;
     }
@@ -200,7 +200,7 @@ struct DiaryEditPage {
               .fontSize(AppTheme.FONT_SIZE_MEDIUM)
               .backgroundColor(Color.Transparent)
               .padding(AppTheme.SPACING_NORMAL)
-              .minHeight(300)
+              .height(300)
               .onChange((value: string) => {
                 this.content = value;
               })

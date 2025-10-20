@@ -2,10 +2,10 @@ import { router } from '@kit.ArkUI';
 import { PhotoService } from '../services/PhotoService';
 import { PhotoModel } from '../models/PhotoModel';
 import { AppTheme } from '../theme/AppTheme';
-import { promptAction } from '@kit.ArkUI';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { UIUtils } from '../utils/UIUtils';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Component
 export struct PhotoGridPage {
@@ -27,7 +27,7 @@ export struct PhotoGridPage {
       logger.info('PhotoGridPage', `Loaded ${this.photos.length} photos`);
     } catch (err) {
       logger.error('PhotoGridPage', `Load photos failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({ message: '加载失败', duration: 2000 });
+      UIUtils.showError('加载失败');
     } finally {
       this.isLoading = false;
     }
@@ -41,18 +41,18 @@ export struct PhotoGridPage {
       const uris = await this.photoService.selectPhotos();
       
       if (uris && uris.length > 0) {
-        promptAction.showToast({ message: '正在保存...', duration: 2000 });
+        UIUtils.showLoading('正在保存...');
         
         for (const uri of uris) {
           await this.photoService.savePhoto(uri, '');
         }
         
         await this.loadPhotos();
-        promptAction.showToast({ message: '添加成功', duration: 2000 });
+        UIUtils.showSuccess('添加成功');
       }
     } catch (err) {
       logger.error('PhotoGridPage', `Add photos failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({ message: '添加失败', duration: 2000 });
+      UIUtils.showError('添加失败');
     }
   }
 
@@ -61,20 +61,20 @@ export struct PhotoGridPage {
    */
   async deletePhoto(photo: PhotoModel) {
     try {
-      await promptAction.showDialog({
+      const result = await UIUtils.showConfirmDialog({
         title: '删除照片',
         message: '确定要删除这张照片吗？',
         buttons: [
           { text: '取消', color: AppTheme.TEXT_SECONDARY },
           { text: '删除', color: AppTheme.ERROR_COLOR }
         ]
-      }).then(async (result) => {
-        if (result.index === 1 && photo.id) {
-          await this.photoService.deletePhoto(photo.id, photo.filePath);
-          await this.loadPhotos();
-          promptAction.showToast({ message: '已删除', duration: 2000 });
-        }
       });
+      
+      if (result.index === 1 && photo.id) {
+        await this.photoService.deletePhoto(photo.id, photo.filePath);
+        await this.loadPhotos();
+        UIUtils.showSuccess('已删除');
+      }
     } catch (err) {
       logger.error('PhotoGridPage', `Delete photo failed: ${JSON.stringify(err)}`);
     }
@@ -96,10 +96,9 @@ export struct PhotoGridPage {
       } else if (this.photos.length === 0) {
         // 空状态
         Column() {
-          Image($r('sys.symbol.photo'))
-            .width(80)
-            .height(80)
-            .fillColor(AppTheme.TEXT_PLACEHOLDER)
+          Text('📷')
+            .fontSize(80)
+            .fontColor(AppTheme.TEXT_PLACEHOLDER)
             .margin({ bottom: AppTheme.SPACING_NORMAL })
 
           Text('还没有照片')
@@ -141,7 +140,7 @@ export struct PhotoGridPage {
               })
               .animation({
                 duration: 300,
-                curve: Curve.SpringMotion
+                curve: Curve.EaseInOut
               })
             }
             .onClick(() => {
@@ -152,7 +151,7 @@ export struct PhotoGridPage {
                   currentIndex: index
                 }
               }).catch((err: Error) => {
-                promptAction.showToast({ message: '打开失败', duration: 2000 });
+                UIUtils.showError('打开失败');
               });
             })
             .gesture(

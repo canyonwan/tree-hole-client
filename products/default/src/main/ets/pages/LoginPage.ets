@@ -1,9 +1,9 @@
 import { router } from '@kit.ArkUI';
 import { AuthService } from '../services/AuthService';
 import { AppTheme } from '../theme/AppTheme';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Entry
 @Component
@@ -244,10 +244,9 @@ struct LoginPage {
           // 指纹按钮（仅登录模式显示）
           if (!this.isSettingPassword) {
             Button() {
-              Image($r('sys.symbol.fingerprint'))
-                .width(30)
-                .height(30)
-                .fillColor(AppTheme.PRIMARY_COLOR)
+              Text('👆')
+                .fontSize(30)
+                .fontColor(AppTheme.PRIMARY_COLOR)
             }
             .width(70)
             .height(70)

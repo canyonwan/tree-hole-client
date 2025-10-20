@@ -1,10 +1,10 @@
 import { router } from '@kit.ArkUI';
 import { AuthService } from '../services/AuthService';
 import { AppTheme } from '../theme/AppTheme';
-import { promptAction } from '@kit.ArkUI';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { UIUtils } from '../utils/UIUtils';
+import { Logger } from '@ohos/common';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 @Entry
 @Component
@@ -21,15 +21,17 @@ struct SettingsPage {
   /**
    * 修改密码
    */
-  showChangePasswordDialog() {
-    promptAction.showDialog({
-      title: '修改密码',
-      message: '请前往登录页面重新设置密码',
-      buttons: [
-        { text: '取消', color: AppTheme.TEXT_SECONDARY },
-        { text: '确定', color: AppTheme.PRIMARY_COLOR }
-      ]
-    }).then((result) => {
+  async showChangePasswordDialog() {
+    try {
+      const result = await UIUtils.showConfirmDialog({
+        title: '修改密码',
+        message: '请前往登录页面重新设置密码',
+        buttons: [
+          { text: '取消', color: AppTheme.TEXT_SECONDARY },
+          { text: '确定', color: AppTheme.PRIMARY_COLOR }
+        ]
+      });
+      
       if (result.index === 1) {
         router.replaceUrl({
           url: 'pages/LoginPage'
@@ -37,7 +39,9 @@ struct SettingsPage {
           logger.error('SettingsPage', `Router failed: ${err.message}`);
         });
       }
-    });
+    } catch (err) {
+      logger.error('SettingsPage', `Show dialog failed: ${JSON.stringify(err)}`);
+    }
   }
 
   /**
@@ -45,10 +49,7 @@ struct SettingsPage {
    */
   async toggleBiometric(enabled: boolean) {
     if (!this.biometricSupported) {
-      promptAction.showToast({
-        message: '设备不支持指纹识别',
-        duration: 2000
-      });
+      UIUtils.showError('设备不支持指纹识别');
       return;
     }
 
@@ -57,16 +58,10 @@ struct SettingsPage {
       this.biometricEnabled = enabled;
       logger.info('SettingsPage', `Biometric enabled: ${enabled}`);
       
-      promptAction.showToast({
-        message: enabled ? '指纹识别已开启' : '指纹识别已关闭',
-        duration: 2000
-      });
+      UIUtils.showSuccess(enabled ? '指纹识别已开启' : '指纹识别已关闭');
     } catch (err) {
       logger.error('SettingsPage', `Toggle biometric failed: ${JSON.stringify(err)}`);
-      promptAction.showToast({
-        message: '设置失败',
-        duration: 2000
-      });
+      UIUtils.showError('设置失败');
     }
   }
 
@@ -147,11 +142,7 @@ struct SettingsPage {
 
           ListItem() {
             this.SettingItem('关于应用', '', () => {
-              promptAction.showDialog({
-                title: '关于应用',
-                message: '我的秘密空间\n一个安全的私密日记和相册应用',
-                buttons: [{ text: '确定', color: AppTheme.PRIMARY_COLOR }]
-              });
+              UIUtils.showInfoDialog('关于应用', '我的秘密空间\n一个安全的私密日记和相册应用');
             }, false)
           }
         }

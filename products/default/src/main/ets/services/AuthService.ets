@@ -1,9 +1,10 @@
 import { preferences } from '@kit.ArkData';
 import { userAuth } from '@kit.UserAuthenticationKit';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
+import { Logger } from '@ohos/common';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 const PREFERENCES_NAME = 'auth_preferences';
 const KEY_PASSWORD_HASH = 'password_hash';
 const KEY_BIOMETRIC_ENABLED = 'biometric_enabled';
@@ -28,8 +29,9 @@ export class AuthService {
       this.prefs = await preferences.getPreferences(this.context, PREFERENCES_NAME);
       logger.info('AuthService', 'AuthService initialized');
     } catch (err) {
-      logger.error('AuthService', `Failed to init AuthService: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('AuthService', `Failed to init AuthService: ${error.message}`);
+      throw new Error(`Failed to init AuthService: ${error.message}`);
     }
   }
 
@@ -58,8 +60,9 @@ export class AuthService {
       await this.prefs!.flush();
       logger.info('AuthService', 'Password set successfully');
     } catch (err) {
-      logger.error('AuthService', `Failed to set password: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('AuthService', `Failed to set password: ${error.message}`);
+      throw new Error(`Failed to set password: ${error.message}`);
     }
   }
 
@@ -117,8 +120,9 @@ export class AuthService {
       await this.prefs!.flush();
       logger.info('AuthService', `Biometric set to: ${enabled}`);
     } catch (err) {
-      logger.error('AuthService', `Failed to set biometric: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('AuthService', `Failed to set biometric: ${error.message}`);
+      throw new Error(`Failed to set biometric: ${error.message}`);
     }
   }
 
@@ -127,6 +131,7 @@ export class AuthService {
    */
   public async checkBiometricSupport(): Promise<boolean> {
     try {
+      // 尝试创建认证实例来检查是否支持指纹识别
       const authParam: userAuth.AuthParam = {
         challenge: new Uint8Array([1, 2, 3, 4, 5]),
         authType: [userAuth.UserAuthType.FINGERPRINT],
@@ -134,15 +139,19 @@ export class AuthService {
       };
 
       const widgetParam: userAuth.WidgetParam = {
-        title: '指纹验证'
+        title: '检查指纹支持'
       };
 
+      // 如果能成功创建实例，说明设备支持
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-      const availableStatus = userAuthInstance.checkAuthCapability();
-
-      return availableStatus === userAuth.UserAuthResultCode.SUCCESS;
+      if (userAuthInstance) {
+        userAuthInstance.cancel();
+        return true;
+      }
+      return false;
     } catch (err) {
-      logger.error('AuthService', `Biometric check failed: ${JSON.stringify(err)}`);
+      const error = err as BusinessError;
+      logger.error('AuthService', `Biometric check failed: ${error.message}`);
       return false;
     }
   }

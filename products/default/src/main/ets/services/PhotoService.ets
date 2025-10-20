@@ -1,10 +1,11 @@
 import { DatabaseHelper } from '../database/DatabaseHelper';
 import { PhotoModel } from '../models/PhotoModel';
-import { Logger } from '../../../common/src/main/ets/utils/Logger';
-import { fileIo, fs } from '@kit.CoreFileKit';
+import { Logger } from '@ohos/common';
+import { fileIo } from '@kit.CoreFileKit';
 import { picker } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 /**
  * 相册业务服务类
@@ -24,7 +25,7 @@ export class PhotoService {
   public async selectPhotos(): Promise<string[]> {
     try {
       const photoSelectOptions = new picker.PhotoSelectOptions();
-      photoSelectOptions.mimeType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+      photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
       photoSelectOptions.maxSelectNumber = 9;
 
       const photoViewPicker = new picker.PhotoViewPicker();
@@ -32,8 +33,9 @@ export class PhotoService {
 
       return photoSelectResult.photoUris;
     } catch (err) {
-      logger.error('PhotoService', `Failed to select photos: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to select photos: ${error.message}`);
+      throw new Error(`Failed to select photos: ${error.message}`);
     }
   }
 
@@ -47,10 +49,8 @@ export class PhotoService {
       const photoDir = `${filesDir}/photos`;
 
       // 创建photos目录（如果不存在）
-      try {
-        await fs.access(photoDir);
-      } catch {
-        await fs.mkdir(photoDir);
+      if (!fileIo.accessSync(photoDir)) {
+        fileIo.mkdirSync(photoDir);
       }
 
       // 生成唯一文件名
@@ -59,7 +59,7 @@ export class PhotoService {
       const destPath = `${photoDir}/${fileName}`;
 
       // 复制文件到应用目录
-      await fs.copyFile(sourceUri, destPath);
+      fileIo.copyFileSync(sourceUri, destPath);
 
       // 保存到数据库
       const photo: PhotoModel = {
@@ -72,8 +72,9 @@ export class PhotoService {
       logger.info('PhotoService', `Photo saved with id: ${id}`);
       return id;
     } catch (err) {
-      logger.error('PhotoService', `Failed to save photo: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to save photo: ${error.message}`);
+      throw new Error(`Failed to save photo: ${error.message}`);
     }
   }
 
@@ -84,8 +85,9 @@ export class PhotoService {
     try {
       // 删除文件
       try {
-        await fs.access(filePath);
-        await fs.unlink(filePath);
+        if (fileIo.accessSync(filePath)) {
+          fileIo.unlinkSync(filePath);
+        }
       } catch (err) {
         logger.warn('PhotoService', `File not found or already deleted: ${filePath}`);
       }
@@ -94,8 +96,9 @@ export class PhotoService {
       await this.dbHelper.deletePhoto(id);
       logger.info('PhotoService', `Photo deleted: ${id}`);
     } catch (err) {
-      logger.error('PhotoService', `Failed to delete photo: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to delete photo: ${error.message}`);
+      throw new Error(`Failed to delete photo: ${error.message}`);
     }
   }
 
@@ -106,8 +109,9 @@ export class PhotoService {
     try {
       return await this.dbHelper.queryAllPhotos();
     } catch (err) {
-      logger.error('PhotoService', `Failed to get photos: ${JSON.stringify(err)}`);
-      throw err;
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get photos: ${error.message}`);
+      throw new Error(`Failed to get photos: ${error.message}`);
     }
   }
 }

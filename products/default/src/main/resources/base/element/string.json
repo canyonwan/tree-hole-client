@@ -47,6 +47,18 @@
     {
       "name": "location_cap_valid",
       "value": "This device has the system capability of location service"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "photo",
+      "value": "相册"
+    },
+    {
+      "name": "fingerprint",
+      "value": "指纹"
     }
   ]
 }

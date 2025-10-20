@@ -31,30 +31,38 @@
     "IS_HVIGORFILE_TYPE_CHECK": false,
     "TASK_TIME": {
       "c21f969b5f03d33d43e04f8f136e7682": {
-        "CreateModuleInfo": 351792,
-        "PreCheckSyscap": 146000,
-        "ProcessIntegratedHsp": 338541,
-        "SyscapTransform": 13457791,
-        "ProcessStartupConfig": 925250,
-        "ConfigureCmake": 98459,
-        "BuildNativeWithCmake": 133417,
-        "BuildJS": 803375,
-        "BuildNativeWithNinja": 150584
+        "CreateModuleInfo": 236791,
+        "PreCheckSyscap": 90958,
+        "ProcessIntegratedHsp": 210333,
+        "SyscapTransform": 398333,
+        "ProcessStartupConfig": 833167,
+        "ConfigureCmake": 189459,
+        "BuildNativeWithCmake": 98167,
+        "BuildJS": 477667,
+        "BuildNativeWithNinja": 123541,
+        "CompileArkTS": 763019625,
+        "GeneratePkgModuleJson": 863125,
+        "ProcessCompiledResources": 422458,
+        "PackageHap": 280666458,
+        "PackingCheck": 3560375,
+        "SignHap": 619042,
+        "CollectDebugSymbol": 282708,
+        "assembleHap": 86167
       },
       "9efab2399c7c560b34de477b9aa0a465": {
-        "ConfigureCmake": 105250,
-        "BuildNativeWithCmake": 104791,
-        "BuildNativeWithNinja": 212583
+        "ConfigureCmake": 79792,
+        "BuildNativeWithCmake": 85958,
+        "BuildNativeWithNinja": 261125
       },
       "78ab67c0ccf94941e7201d2c13db7e5a": {
-        "ConfigureCmake": 87375,
-        "BuildNativeWithCmake": 83625,
-        "BuildNativeWithNinja": 184292
+        "ConfigureCmake": 203584,
+        "BuildNativeWithCmake": 156958,
+        "BuildNativeWithNinja": 231834
       },
       "4945d56765b6e30b065e742f8eb45a54": {
-        "ConfigureCmake": 155625,
-        "BuildNativeWithCmake": 114750,
-        "BuildNativeWithNinja": 147625
+        "ConfigureCmake": 111083,
+        "BuildNativeWithCmake": 75042,
+        "BuildNativeWithNinja": 271791
       }
     },
     "APIS": [
@@ -65,8 +73,6 @@
       "getAllNodes",
       "getRootNode",
       "getNodeName",
-      "getStartParams",
-      "buildFinished",
       "getNodePath",
       "subNodes",
       "getExtraOption",
@@ -77,192 +83,11 @@
       "getParameter",
       "getProductName",
       "nodesEvaluated",
-      "getCommandEntryTask"
+      "getCommandEntryTask",
+      "getStartParams"
     ],
     "CONFIG_PROPERTIES": {},
-    "BUILD_ID": "202510200914447070",
-    "ERROR_MESSAGE": [
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605087",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10605008",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10505001",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10903329",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10903329",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10903329",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10903329",
-        "TIMESTAMP": "1760922889523"
-      },
-      {
-        "CODE": "10311006",
-        "TIMESTAMP": "1760922889523"
-      }
-    ],
-    "TOTAL_TIME": 4817302500
+    "TOTAL_TIME": 1200274625,
+    "BUILD_ID": "202510201030339650"
   }
 }
