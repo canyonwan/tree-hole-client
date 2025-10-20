@@ -2,15 +2,27 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "我的秘密空间 - 私密日记和相册"
     },
     {
       "name": "ability_desc",
-      "value": "description"
+      "value": "安全的私密空间应用"
     },
     {
       "name": "ability_label",
-      "value": "label"
+      "value": "我的秘密空间"
+    },
+    {
+      "name": "permission_read_media_reason",
+      "value": "需要读取媒体文件以添加照片到相册"
+    },
+    {
+      "name": "permission_write_media_reason",
+      "value": "需要保存照片到应用目录"
+    },
+    {
+      "name": "permission_biometric_reason",
+      "value": "使用指纹识别快速登录应用"
     },
     {
       "name": "grid_title_label",

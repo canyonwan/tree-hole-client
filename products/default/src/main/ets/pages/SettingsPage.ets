@@ -31,7 +31,11 @@ struct SettingsPage {
       ]
     }).then((result) => {
       if (result.index === 1) {
-        router.replaceUrl({ url: 'pages/LoginPage' });
+        router.replaceUrl({
+          url: 'pages/LoginPage'
+        }).catch((err: Error) => {
+          logger.error('SettingsPage', `Router failed: ${err.message}`);
+        });
       }
     });
   }

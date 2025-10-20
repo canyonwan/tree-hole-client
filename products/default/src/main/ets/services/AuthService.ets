@@ -184,11 +184,17 @@ export class AuthService {
    * 简单的密码哈希函数
    */
   private hashPassword(password: string): string {
-    const textEncoder = new util.TextEncoder();
-    const data = textEncoder.encodeInto(password);
-    const md5 = util.generateRandomUUID(); // 简化处理，实际应用中应使用更安全的哈希算法
-    // 这里使用简单的Base64编码模拟哈希
-    return util.Base64Helper.encodeToStringSync(data);
+    try {
+      const textEncoder = new util.TextEncoder();
+      const uint8Array = textEncoder.encodeInto(password);
+      // 使用Base64编码
+      const base64 = new util.Base64Helper();
+      return base64.encodeToStringSync(uint8Array);
+    } catch (err) {
+      logger.error('AuthService', `Hash password failed: ${JSON.stringify(err)}`);
+      // 降级方案：使用简单的字符串混淆
+      return password.split('').reverse().join('') + '_hash';
+    }
   }
 }
 

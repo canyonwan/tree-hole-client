@@ -29,7 +29,11 @@ struct MainPage {
         .width(40)
         .height(40)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/SettingsPage' });
+          router.pushUrl({
+            url: 'pages/SettingsPage'
+          }).catch((err: Error) => {
+            console.error('Router failed:', err.message);
+          });
         })
       }
       .width('100%')

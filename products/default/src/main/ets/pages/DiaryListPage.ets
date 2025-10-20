@@ -138,6 +138,8 @@ export struct DiaryListPage {
               router.pushUrl({
                 url: 'pages/DiaryEditPage',
                 params: { diaryId: diary.id }
+              }).catch((err: Error) => {
+                logger.error('DiaryListPage', `Router failed: ${err.message}`);
               });
             })
             .gesture(
@@ -172,7 +174,11 @@ export struct DiaryListPage {
         offsetY: 4
       })
       .onClick(() => {
-        router.pushUrl({ url: 'pages/DiaryEditPage' });
+        router.pushUrl({
+          url: 'pages/DiaryEditPage'
+        }).catch((err: Error) => {
+          logger.error('DiaryListPage', `Router failed: ${err.message}`);
+        });
       })
       .scale({ x: 1, y: 1 })
       .animation({
@@ -253,6 +259,15 @@ export struct DiaryListPage {
       radius: 8,
       color: '#00000010',
       offsetY: 2
+    })
+    .transition({
+      type: TransitionType.Insert,
+      opacity: 0,
+      translate: { y: 50 }
+    })
+    .animation({
+      duration: 300,
+      curve: Curve.EaseOut
     })
   }
 }

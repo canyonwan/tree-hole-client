@@ -129,6 +129,20 @@ export struct PhotoGridPage {
               }
               .width('100%')
               .aspectRatio(1)
+              .shadow({
+                radius: 4,
+                color: '#00000015',
+                offsetY: 2
+              })
+              .transition({
+                type: TransitionType.Insert,
+                opacity: 0,
+                scale: { x: 0.8, y: 0.8 }
+              })
+              .animation({
+                duration: 300,
+                curve: Curve.SpringMotion
+              })
             }
             .onClick(() => {
               router.pushUrl({
@@ -137,6 +151,8 @@ export struct PhotoGridPage {
                   photoId: photo.id,
                   currentIndex: index
                 }
+              }).catch((err: Error) => {
+                promptAction.showToast({ message: '打开失败', duration: 2000 });
               });
             })
             .gesture(

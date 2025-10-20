@@ -1,7 +1,7 @@
 import { DatabaseHelper } from '../database/DatabaseHelper';
 import { PhotoModel } from '../models/PhotoModel';
 import { Logger } from '../../../common/src/main/ets/utils/Logger';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo, fs } from '@kit.CoreFileKit';
 import { picker } from '@kit.CoreFileKit';
 
 const logger = new Logger();
@@ -24,7 +24,7 @@ export class PhotoService {
   public async selectPhotos(): Promise<string[]> {
     try {
       const photoSelectOptions = new picker.PhotoSelectOptions();
-      photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+      photoSelectOptions.mimeType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
       photoSelectOptions.maxSelectNumber = 9;
 
       const photoViewPicker = new picker.PhotoViewPicker();
@@ -47,8 +47,10 @@ export class PhotoService {
       const photoDir = `${filesDir}/photos`;
 
       // 创建photos目录（如果不存在）
-      if (!fileIo.accessSync(photoDir)) {
-        fileIo.mkdirSync(photoDir);
+      try {
+        await fs.access(photoDir);
+      } catch {
+        await fs.mkdir(photoDir);
       }
 
       // 生成唯一文件名
@@ -57,7 +59,7 @@ export class PhotoService {
       const destPath = `${photoDir}/${fileName}`;
 
       // 复制文件到应用目录
-      fileIo.copyFileSync(sourceUri, destPath);
+      await fs.copyFile(sourceUri, destPath);
 
       // 保存到数据库
       const photo: PhotoModel = {
@@ -81,8 +83,11 @@ export class PhotoService {
   public async deletePhoto(id: number, filePath: string): Promise<void> {
     try {
       // 删除文件
-      if (fileIo.accessSync(filePath)) {
-        fileIo.unlinkSync(filePath);
+      try {
+        await fs.access(filePath);
+        await fs.unlink(filePath);
+      } catch (err) {
+        logger.warn('PhotoService', `File not found or already deleted: ${filePath}`);
       }
 
       // 从数据库删除

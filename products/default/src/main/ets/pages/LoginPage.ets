@@ -54,7 +54,11 @@ struct LoginPage {
       const isValid = await this.authService.verifyPassword(this.password);
       if (isValid) {
         logger.info('LoginPage', 'Password verified successfully');
-        router.replaceUrl({ url: 'pages/MainPage' });
+        router.replaceUrl({
+          url: 'pages/MainPage'
+        }).catch((err: Error) => {
+          logger.error('LoginPage', `Router failed: ${err.message}`);
+        });
       } else {
         this.showErrorMessage('密码错误，请重试');
         this.password = '';
@@ -85,7 +89,11 @@ struct LoginPage {
         try {
           await this.authService.setPassword(this.password);
           logger.info('LoginPage', 'Password set successfully');
-          router.replaceUrl({ url: 'pages/MainPage' });
+          router.replaceUrl({
+            url: 'pages/MainPage'
+          }).catch((err: Error) => {
+            logger.error('LoginPage', `Router failed: ${err.message}`);
+          });
         } catch (err) {
           logger.error('LoginPage', `Set password failed: ${JSON.stringify(err)}`);
           this.showErrorMessage('设置密码失败');
@@ -134,7 +142,11 @@ struct LoginPage {
       const success = await this.authService.authenticateWithBiometric();
       if (success) {
         logger.info('LoginPage', 'Biometric auth success');
-        router.replaceUrl({ url: 'pages/MainPage' });
+        router.replaceUrl({
+          url: 'pages/MainPage'
+        }).catch((err: Error) => {
+          logger.error('LoginPage', `Router failed: ${err.message}`);
+        });
       } else {
         this.showErrorMessage('指纹识别失败');
       }
@@ -208,10 +220,17 @@ struct LoginPage {
                 .backgroundColor(AppTheme.CARD_BACKGROUND)
                 .borderRadius(AppTheme.RADIUS_ROUND)
                 .margin(AppTheme.SPACING_MEDIUM)
+                .stateStyles({
+                  pressed: {
+                    .scale({ x: 0.95, y: 0.95 })
+                  },
+                  normal: {
+                    .scale({ x: 1, y: 1 })
+                  }
+                })
                 .onClick(() => {
                   this.handleNumberClick(num);
                 })
-                .scale({ x: 1, y: 1 })
                 .animation({
                   duration: 100,
                   curve: Curve.FastOutSlowIn
