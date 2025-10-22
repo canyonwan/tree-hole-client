@@ -113,10 +113,10 @@ struct DiaryEditPage {
       // 顶部工具栏
       Row() {
         Button() {
-          Image($r('sys.symbol.chevron_left'))
-            .width(24)
-            .height(24)
-            .fillColor(AppTheme.TEXT_PRIMARY)
+          Text('←')
+            .fontSize(24)
+            .fontColor(AppTheme.TEXT_PRIMARY)
+            .fontWeight(FontWeight.Bold)
         }
         .backgroundColor(Color.Transparent)
         .width(40)
@@ -167,7 +167,6 @@ struct DiaryEditPage {
               .fontSize(AppTheme.FONT_SIZE_SMALL)
               .fontColor(AppTheme.TEXT_SECONDARY)
               .alignSelf(ItemAlign.Start)
-              .padding(AppTheme.SPACING_NORMAL)
 
             // 标题输入
             TextInput({ placeholder: '标题（可选）', text: this.title })

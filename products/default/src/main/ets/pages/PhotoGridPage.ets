@@ -177,30 +177,26 @@ export struct PhotoGridPage {
 
       // 添加按钮
       Button() {
-        Image($r('sys.symbol.plus'))
-          .width(28)
-          .height(28)
-          .fillColor(AppTheme.TEXT_WHITE)
+        Text('+')
+          .fontSize(32)
+          .fontColor(AppTheme.TEXT_WHITE)
+          .fontWeight(FontWeight.Bold)
       }
       .width(60)
       .height(60)
       .backgroundColor(AppTheme.PRIMARY_COLOR)
       .borderRadius(AppTheme.RADIUS_ROUND)
-      .position({ x: '85%', y: '85%' })
-      .translate({ x: '-50%', y: '-50%' })
+      .position({ x: '100%', y: '100%' })
+      .translate({ x: -76, y: -76 })
       .shadow({
         radius: 12,
-        color: AppTheme.PRIMARY_COLOR,
+        color: AppTheme.PRIMARY_COLOR + '40',
         offsetY: 4
       })
       .onClick(() => {
         this.addPhotos();
       })
-      .scale({ x: 1, y: 1 })
-      .animation({
-        duration: 200,
-        curve: Curve.FastOutSlowIn
-      })
+      .zIndex(100)
     }
     .width('100%')
     .height('100%')

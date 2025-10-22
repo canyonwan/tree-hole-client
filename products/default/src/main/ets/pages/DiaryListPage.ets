@@ -157,20 +157,20 @@ export struct DiaryListPage {
 
       // 添加按钮
       Button() {
-        Image($r('sys.symbol.plus'))
-          .width(28)
-          .height(28)
-          .fillColor(AppTheme.TEXT_WHITE)
+        Text('+')
+          .fontSize(32)
+          .fontColor(AppTheme.TEXT_WHITE)
+          .fontWeight(FontWeight.Bold)
       }
       .width(60)
       .height(60)
       .backgroundColor(AppTheme.PRIMARY_COLOR)
       .borderRadius(AppTheme.RADIUS_ROUND)
-      .position({ x: '85%', y: '85%' })
-      .translate({ x: '-50%', y: '-50%' })
+      .position({ x: '100%', y: '100%' })
+      .translate({ x: -76, y: -76 })
       .shadow({
         radius: 12,
-        color: AppTheme.PRIMARY_COLOR,
+        color: AppTheme.PRIMARY_COLOR + '40',
         offsetY: 4
       })
       .onClick(() => {
@@ -180,11 +180,7 @@ export struct DiaryListPage {
           logger.error('DiaryListPage', `Router failed: ${err.message}`);
         });
       })
-      .scale({ x: 1, y: 1 })
-      .animation({
-        duration: 200,
-        curve: Curve.FastOutSlowIn
-      })
+      .zIndex(100)
     }
     .width('100%')
     .height('100%')
@@ -192,73 +188,122 @@ export struct DiaryListPage {
 
   @Builder
   DiaryCard(diary: DiaryModel) {
-    Column() {
-      // 标题和心情
-      Row() {
-        Text(diary.title || '无标题')
-          .fontSize(AppTheme.FONT_SIZE_MEDIUM)
-          .fontColor(AppTheme.TEXT_PRIMARY)
-          .fontWeight(FontWeight.Medium)
-          .maxLines(1)
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-          .layoutWeight(1)
-
+    Row() {
+      // 左侧装饰条和心情
+      Column() {
+        // 心情 emoji
         Text(this.getMoodInfo(diary.mood))
-          .fontSize(24)
-          .margin({ left: AppTheme.SPACING_SMALL })
-      }
-      .width('100%')
-      .margin({ bottom: AppTheme.SPACING_SMALL })
-
-      // 内容预览
-      Text(diary.content)
-        .fontSize(AppTheme.FONT_SIZE_NORMAL)
-        .fontColor(AppTheme.TEXT_SECONDARY)
-        .maxLines(2)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .margin({ bottom: AppTheme.SPACING_SMALL })
-
-      // 标签
-      if (diary.tags && diary.tags !== '[]') {
-        Row() {
-          ForEach(this.diaryService.parseTags(diary.tags).slice(0, 3), (tag: string) => {
-            Text(`#${tag}`)
-              .fontSize(AppTheme.FONT_SIZE_SMALL)
-              .fontColor(AppTheme.PRIMARY_COLOR)
-              .backgroundColor(AppTheme.PRIMARY_COLOR + '20')
-              .padding({
-                left: AppTheme.SPACING_SMALL,
-                right: AppTheme.SPACING_SMALL,
-                top: 4,
-                bottom: 4
-              })
-              .borderRadius(AppTheme.RADIUS_SMALL)
-              .margin({ right: AppTheme.SPACING_SMALL })
-          })
+          .fontSize(28)
+          .margin({ bottom: 6 })
+        
+        // 日期显示
+        Column() {
+          Text(new Date(diary.createTime).getDate().toString())
+            .fontSize(18)
+            .fontWeight(FontWeight.Bold)
+            .fontColor(AppTheme.PRIMARY_COLOR)
+          
+          Text(this.formatDate(diary.createTime).substring(0, 2))
+            .fontSize(11)
+            .fontColor(AppTheme.TEXT_PLACEHOLDER)
         }
-        .margin({ bottom: AppTheme.SPACING_SMALL })
+        .alignItems(HorizontalAlign.Center)
       }
+      .width(65)
+      .justifyContent(FlexAlign.Start)
+      .padding({ top: 12, bottom: 12 })
+      .borderRadius({
+        topLeft: AppTheme.RADIUS_LARGE,
+        bottomLeft: AppTheme.RADIUS_LARGE
+      })
+      .linearGradient({
+        angle: 135,
+        colors: [[AppTheme.PRIMARY_COLOR + '15', 0.0], [AppTheme.PRIMARY_COLOR + '05', 1.0]]
+      })
 
-      // 日期
-      Row() {
-        Text(this.formatDate(diary.createTime))
-          .fontSize(AppTheme.FONT_SIZE_SMALL)
-          .fontColor(AppTheme.TEXT_PLACEHOLDER)
+      // 右侧内容区
+      Column() {
+        // 标题行
+        Row() {
+          Text(diary.title || '无标题')
+            .fontSize(16)
+            .fontColor(AppTheme.TEXT_PRIMARY)
+            .fontWeight(FontWeight.Medium)
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .layoutWeight(1)
+          
+          // 时间标签
+          Text(this.formatTime(diary.createTime))
+            .fontSize(11)
+            .fontColor(AppTheme.TEXT_PLACEHOLDER)
+            .backgroundColor(AppTheme.TEXT_PLACEHOLDER + '15')
+            .padding({ left: 8, right: 8, top: 3, bottom: 3 })
+            .borderRadius(10)
+        }
+        .width('100%')
+        .margin({ bottom: 6 })
 
-        Text(this.formatTime(diary.createTime))
-          .fontSize(AppTheme.FONT_SIZE_SMALL)
-          .fontColor(AppTheme.TEXT_PLACEHOLDER)
-          .margin({ left: AppTheme.SPACING_SMALL })
+        // 内容预览
+        Text(diary.content)
+          .width('100%')
+          .fontSize(13)
+          .fontColor(AppTheme.TEXT_SECONDARY)
+          .lineHeight(19)
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .margin({ bottom: diary.tags && diary.tags !== '[]' ? 8 : 0 })
+
+        // 标签
+        if (diary.tags && diary.tags !== '[]') {
+          Flex({ wrap: FlexWrap.Wrap }) {
+            ForEach(this.diaryService.parseTags(diary.tags).slice(0, 3), (tag: string, idx: number) => {
+              Row() {
+                Text('#')
+                  .fontSize(10)
+                  .fontColor(AppTheme.PRIMARY_COLOR)
+                  .fontWeight(FontWeight.Bold)
+                  .margin({ right: 2 })
+                
+                Text(tag)
+                  .fontSize(10)
+                  .fontColor(AppTheme.PRIMARY_COLOR)
+              }
+              .padding({ left: 7, right: 7, top: 3, bottom: 3 })
+              .backgroundColor(AppTheme.PRIMARY_COLOR + '12')
+              .borderRadius(10)
+              .border({
+                width: 0.5,
+                color: AppTheme.PRIMARY_COLOR + '30'
+              })
+              .margin({ right: 5, bottom: 5 })
+            })
+          }
+          .width('100%')
+        }
       }
+      .layoutWeight(1)
+      .padding({
+        left: 12,
+        right: 12,
+        top: 12,
+        bottom: 12
+      })
+      .alignItems(HorizontalAlign.Start)
     }
     .width('100%')
-    .padding(AppTheme.SPACING_NORMAL)
+    .alignItems(VerticalAlign.Top)
     .backgroundColor(AppTheme.CARD_BACKGROUND)
     .borderRadius(AppTheme.RADIUS_LARGE)
+    .border({
+      width: 1,
+      color: AppTheme.TEXT_PLACEHOLDER + '10'
+    })
     .shadow({
-      radius: 8,
-      color: '#00000010',
-      offsetY: 2
+      radius: 12,
+      color: '#00000008',
+      offsetX: 0,
+      offsetY: 4
     })
     .transition({
       type: TransitionType.Insert,

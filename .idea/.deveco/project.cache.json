@@ -9,7 +9,7 @@
 		"SELECT_BUILD_PRODUCT":"default",
 		"BUNDLE_NAME":"com.canyonwan.treehole",
 		"BUILD_PATH":{
-			"OUTPUT_PATH":"/Users/canyonwan/Documents/me/hamoryOS/treehole/build/outputs/default"
+			"OUTPUT_PATH":"/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/build/outputs/default"
 		},
 		"SELECT_BUILD_MODE":""
 	}

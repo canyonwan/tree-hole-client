@@ -139,10 +139,10 @@ struct PhotoDetailPage {
       if (this.showToolbar) {
         Row() {
           Button() {
-            Image($r('sys.symbol.chevron_left'))
-              .width(24)
-              .height(24)
-              .fillColor(AppTheme.TEXT_WHITE)
+            Text('←')
+              .fontSize(24)
+              .fontColor(AppTheme.TEXT_WHITE)
+              .fontWeight(FontWeight.Bold)
           }
           .backgroundColor('rgba(0, 0, 0, 0.5)')
           .width(40)
@@ -169,10 +169,8 @@ struct PhotoDetailPage {
           Blank()
 
           Button() {
-            Image($r('sys.symbol.trash'))
-              .width(24)
-              .height(24)
-              .fillColor(AppTheme.TEXT_WHITE)
+            Text('🗑️')
+              .fontSize(20)
           }
           .backgroundColor('rgba(239, 68, 68, 0.8)')
           .width(40)

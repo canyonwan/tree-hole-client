@@ -1,49 +1,49 @@
 {
   "ohos-module-default": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build",
+    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/src/main",
+        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/src/main",
         "RESOURCES_PATH": [
-          "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/src/main/resources"
+          "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/src/main/resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/outputs/default",
-          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates",
-          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader_out/default",
-          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader_out_lite/default",
-          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/res/default",
-          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/res/default/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/cache/default/default@CompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/cache/default/default@CompileJS/jsbundle",
-          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader/default/loader.json",
-          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/manifest/default",
-          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/hap_metadata/default/output_metadata.json",
-          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/source_map/default"
+          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/outputs/default",
+          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates",
+          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader_out/default",
+          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader_out_lite/default",
+          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/res/default",
+          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/res/default/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/cache/default/default@CompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/cache/default/default@CompileJS/jsbundle",
+          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader/default/loader.json",
+          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/manifest/default",
+          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/hap_metadata/default/output_metadata.json",
+          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/source_map/default"
         },
         "BUILD_OPTION": {
           "debuggable": true
         }
       },
       "ohosTest": {
-        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/src/ohosTest",
+        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/src/ohosTest",
         "RESOURCES_PATH": [
-          "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/src/ohosTest/resources"
+          "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/src/ohosTest/resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/outputs/ohosTest",
-          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates",
-          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader_out/ohosTest",
-          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader_out_lite/ohosTest",
-          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/res/ohosTest",
-          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/res/ohosTest/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/cache/ohosTest/ohosTest@OhosTestCompileJS/jsbundle",
-          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/loader/ohosTest/loader.json",
-          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/manifest/ohosTest",
-          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/hap_metadata/ohosTest/output_metadata.json",
-          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default/build/default/intermediates/source_map/ohosTest"
+          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/outputs/ohosTest",
+          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates",
+          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader_out/ohosTest",
+          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader_out_lite/ohosTest",
+          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/res/ohosTest",
+          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/res/ohosTest/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/cache/ohosTest/ohosTest@OhosTestCompileJS/jsbundle",
+          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/loader/ohosTest/loader.json",
+          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/manifest/ohosTest",
+          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/hap_metadata/ohosTest/output_metadata.json",
+          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default/build/default/intermediates/source_map/ohosTest"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -109,26 +109,26 @@
   },
   "ohos-module-common": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build",
+    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/src/main",
+        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/src/main",
         "RESOURCES_PATH": [
-          "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/src/main/resources"
+          "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/src/main/resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/outputs/default",
-          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates",
-          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/loader_out/default",
-          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/loader_out_lite/default",
-          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/res/default",
-          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/res/default/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/cache/default/default@HarCompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/cache/default/default@HarCompileJS/jsbundle",
-          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/loader/default/loader.json",
-          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/manifest/default",
-          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/hap_metadata/default/output_metadata.json",
-          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common/build/default/intermediates/source_map/default"
+          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/outputs/default",
+          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates",
+          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/loader_out/default",
+          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/loader_out_lite/default",
+          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/res/default",
+          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/res/default/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/cache/default/default@HarCompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/cache/default/default@HarCompileJS/jsbundle",
+          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/loader/default/loader.json",
+          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/manifest/default",
+          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/hap_metadata/default/output_metadata.json",
+          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common/build/default/intermediates/source_map/default"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -194,26 +194,26 @@
   },
   "ohos-module-adaptiveLayout": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build",
+    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/src/main",
+        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/src/main",
         "RESOURCES_PATH": [
-          "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/src/main/resources"
+          "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/src/main/resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/outputs/default",
-          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates",
-          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/loader_out/default",
-          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/loader_out_lite/default",
-          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/res/default",
-          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/res/default/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/cache/default/default@HarCompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/cache/default/default@HarCompileJS/jsbundle",
-          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/loader/default/loader.json",
-          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/manifest/default",
-          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/hap_metadata/default/output_metadata.json",
-          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout/build/default/intermediates/source_map/default"
+          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/outputs/default",
+          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates",
+          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/loader_out/default",
+          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/loader_out_lite/default",
+          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/res/default",
+          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/res/default/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/cache/default/default@HarCompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/cache/default/default@HarCompileJS/jsbundle",
+          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/loader/default/loader.json",
+          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/manifest/default",
+          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/hap_metadata/default/output_metadata.json",
+          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout/build/default/intermediates/source_map/default"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -279,26 +279,26 @@
   },
   "ohos-module-responsiveLayout": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build",
+    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/src/main",
+        "SOURCE_ROOT": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/src/main",
         "RESOURCES_PATH": [
-          "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/src/main/resources"
+          "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/src/main/resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/outputs/default",
-          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates",
-          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/loader_out/default",
-          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/loader_out_lite/default",
-          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/res/default",
-          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/res/default/resources/base/profile",
-          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/cache/default/default@HarCompileArkTS/esmodule",
-          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/cache/default/default@HarCompileJS/jsbundle",
-          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/loader/default/loader.json",
-          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/manifest/default",
-          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/hap_metadata/default/output_metadata.json",
-          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout/build/default/intermediates/source_map/default"
+          "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/outputs/default",
+          "INTERMEDIA_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates",
+          "JS_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/loader_out/default",
+          "JS_LITE_ASSETS_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/loader_out_lite/default",
+          "RES_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/res/default",
+          "RES_PROFILE_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/res/default/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/cache/default/default@HarCompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/cache/default/default@HarCompileJS/jsbundle",
+          "WORKER_LOADER": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/loader/default/loader.json",
+          "MANIFEST_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/manifest/default",
+          "OUTPUT_METADATA_JSON": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/hap_metadata/default/output_metadata.json",
+          "SOURCE_MAP_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout/build/default/intermediates/source_map/default"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -364,15 +364,15 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/build",
+    "MODULE_BUILD_DIR": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/build",
     "BUNDLE_NAME": "com.canyonwan.treehole",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/build/outputs/default"
+      "OUTPUT_PATH": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/build/outputs/default"
     },
     "MODULES": [
       {
         "name": "default",
-        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/products/default",
+        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/products/default",
         "targets": [
           {
             "name": "default",
@@ -381,11 +381,11 @@
             ]
           }
         ],
-        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole"
+        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole"
       },
       {
         "name": "common",
-        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/common",
+        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/common",
         "targets": [
           {
             "name": "default",
@@ -394,11 +394,11 @@
             ]
           }
         ],
-        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole"
+        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole"
       },
       {
         "name": "adaptiveLayout",
-        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/adaptiveLayout",
+        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/adaptiveLayout",
         "targets": [
           {
             "name": "default",
@@ -407,11 +407,11 @@
             ]
           }
         ],
-        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole"
+        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole"
       },
       {
         "name": "responsiveLayout",
-        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/features/responsiveLayout",
+        "srcPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/features/responsiveLayout",
         "targets": [
           {
             "name": "default",
@@ -420,7 +420,7 @@
             ]
           }
         ],
-        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole"
+        "belongProjectPath": "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole"
       }
     ],
     "PROFILE_OPT": {
@@ -507,7 +507,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "/Users/canyonwan/Documents/me/hamoryOS/treehole"
+      "/Users/canyonwan/Documents/me/hamoryOS/treehole/treehole"
     ],
     "BUILD_CACHE_DIR": ""
   },

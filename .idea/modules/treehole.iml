@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="EMPTY_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/android/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/android/app/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/android/app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/android/library/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/android/library/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.arkui-x/ios/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../common/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/adaptiveLayout/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/responsiveLayout/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../products/default/oh_modules" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="ArkTS-HarmonyOS-6.0.0(openharmony)" type="ArkUI">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/openharmony/ets/api" />
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/openharmony/ets/component" />
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/openharmony/ets/kits" />
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/openharmony/ets/arkts" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library name="ArkTS-HarmonyOS-6.0.0(hms)" type="ArkUI">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/hms/ets/api" />
+          <root url="file://$APPLICATION_HOME_DIR$/sdk/default/hms/ets/kits" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

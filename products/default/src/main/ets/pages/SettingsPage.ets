@@ -70,10 +70,10 @@ struct SettingsPage {
       // 标题栏
       Row() {
         Button() {
-          Image($r('sys.symbol.chevron_left'))
-            .width(24)
-            .height(24)
-            .fillColor(AppTheme.TEXT_PRIMARY)
+          Text('←')
+            .fontSize(24)
+            .fontColor(AppTheme.TEXT_PRIMARY)
+            .fontWeight(FontWeight.Bold)
         }
         .backgroundColor(Color.Transparent)
         .width(40)
@@ -191,10 +191,9 @@ struct SettingsPage {
       }
 
       if (showArrow && onClick) {
-        Image($r('sys.symbol.chevron_right'))
-          .width(20)
-          .height(20)
-          .fillColor(AppTheme.TEXT_SECONDARY)
+        Text('→')
+          .fontSize(16)
+          .fontColor(AppTheme.TEXT_SECONDARY)
       }
     }
     .width('100%')

@@ -103,8 +103,8 @@
       "dynamic": false,
       "maskedByOverrideDependencyMap": false
     },
-    "@ohos/adaptivelayout@file:features/adaptiveLayout": {
-      "storePath": "features/adaptiveLayout",
+    "@ohos/responsivelayout@file:features/responsiveLayout": {
+      "storePath": "features/responsiveLayout",
       "dependencies": {
         "@ohos/common": "common"
       },
@@ -113,8 +113,8 @@
       "dynamic": false,
       "maskedByOverrideDependencyMap": false
     },
-    "@ohos/responsivelayout@file:features/responsiveLayout": {
-      "storePath": "features/responsiveLayout",
+    "@ohos/adaptivelayout@file:features/adaptiveLayout": {
+      "storePath": "features/adaptiveLayout",
       "dependencies": {
         "@ohos/common": "common"
       },

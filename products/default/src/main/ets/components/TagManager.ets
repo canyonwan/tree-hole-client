@@ -40,10 +40,10 @@ export struct TagManager {
               .fontSize(AppTheme.FONT_SIZE_SMALL)
               .fontColor(AppTheme.PRIMARY_COLOR)
 
-            Image($r('sys.symbol.xmark'))
-              .width(14)
-              .height(14)
-              .fillColor(AppTheme.PRIMARY_COLOR)
+            Text('×')
+              .fontSize(18)
+              .fontColor(AppTheme.PRIMARY_COLOR)
+              .fontWeight(FontWeight.Bold)
               .margin({ left: 4 })
               .onClick(() => {
                 this.removeTag(index);
@@ -104,10 +104,10 @@ export struct TagManager {
         } else {
           Button() {
             Row() {
-              Image($r('sys.symbol.plus'))
-                .width(14)
-                .height(14)
-                .fillColor(AppTheme.PRIMARY_COLOR)
+              Text('+')
+                .fontSize(16)
+                .fontColor(AppTheme.PRIMARY_COLOR)
+                .fontWeight(FontWeight.Bold)
 
               Text('添加标签')
                 .fontSize(AppTheme.FONT_SIZE_SMALL)
