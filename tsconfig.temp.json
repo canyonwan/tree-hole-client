@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["ES2017"],
+    "allowJs": false,
+    "checkJs": false,
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@ohos/*": ["/Users/canyonwan/Library/OpenHarmony/Sdk/20/ets/api/@ohos/*"]
+    }
+  },
+  "include": [
+    "products/default/src/main/ets/**/*.ets",
+    "common/src/main/ets/**/*.ets",
+    "features/**/*.ets"
+  ],
+  "exclude": [
+    "node_modules",
+    "oh_modules"
+  ]
+}
+

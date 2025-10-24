@@ -1,0 +1,1064 @@
+{
+  "version": "2.0",
+  "ppid": 14181,
+  "events": [
+    {
+      "head": {
+        "id": "e0a2475a-aee3-484e-8957-d5d9fbfd176d",
+        "name": "env: nodejsVersion=v18.20.1",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803391809072250
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "8397321f-c5e8-4d3d-8c74-6dce66dea908",
+        "name": "env: hvigor-config.json5 content = {\n  modelVersion: '6.0.0',\n  dependencies: {},\n  execution: {},\n  logging: {},\n  debugging: {},\n  nodeOptions: {}\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803391809942500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "082ab817-8c0f-4998-84b9-1c392b325c7f",
+        "name": "env: daemon=false",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803391811086291
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f73f5026-500b-42a1-98b3-7a947a55a09f",
+        "name": "no-daemon, use the parent process.execArgv --max-old-space-size=8192,--max-semi-space-size=16,--expose-gc",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803391811131333
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "16b6192a-6606-497d-a932-57312108fff7",
+        "name": "init",
+        "description": "Initialize and build task graph.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392021414666
+      },
+      "additional": {
+        "children": [
+          "a97ae1cb-ae1c-40cc-bafd-754ba8be5895",
+          "2d059a88-57dd-4f37-b053-eb987eed83ab",
+          "de106078-e21d-41fd-8c85-f0bf5a940f20",
+          "5d41723e-b8c3-4322-aaaa-f89af1aad3bd",
+          "7c8ba201-67cf-4115-8f58-5d204dc53dfa",
+          "dd3a4b35-0777-4c43-9105-874ab44ff8bf"
+        ],
+        "state": "running",
+        "targetName": "",
+        "moduleName": "",
+        "category": "Init",
+        "taskRunReasons": []
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "a97ae1cb-ae1c-40cc-bafd-754ba8be5895",
+        "name": "create hvigor project model",
+        "description": "Initialize hvigor project model.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392021418291,
+        "endTime": 1803392025112458
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "16b6192a-6606-497d-a932-57312108fff7",
+        "logId": "4e3ba4ab-a72f-4444-809e-cc89ba8930dd"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "2d059a88-57dd-4f37-b053-eb987eed83ab",
+        "name": "configure hvigor plugin",
+        "description": "Configure hvigor plugin.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025126458
+      },
+      "additional": {
+        "children": [
+          "7c4df55c-42d1-452c-aa9d-604c5f49181f",
+          "26cff562-4de5-421a-a546-329c6b27aeb7",
+          "10346ce4-3242-4152-b72e-14182bef27d0",
+          "efa28c04-790d-492c-96a6-b202a6ad1fbe",
+          "096768b0-f232-49a9-9790-57e46192bcdf",
+          "29ed8347-6a46-4d5c-9543-3f04e3da4b2e",
+          "a496a25d-8e59-4065-9b84-7960c83121c9",
+          "4e449058-b460-45ba-8f1f-682b5d3fdbd3"
+        ],
+        "state": "running",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "16b6192a-6606-497d-a932-57312108fff7"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "7c8ba201-67cf-4115-8f58-5d204dc53dfa",
+        "name": "\"configEvaluated\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392023116541,
+        "endTime": 1803392023248500
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "16b6192a-6606-497d-a932-57312108fff7",
+        "logId": "21d93a6d-de7e-4b92-9043-92f24c441360"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "21d93a6d-de7e-4b92-9043-92f24c441360",
+        "name": "\"configEvaluated\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392023116541,
+        "endTime": 1803392023248500
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "7c8ba201-67cf-4115-8f58-5d204dc53dfa"
+      }
+    },
+    {
+      "head": {
+        "id": "dd3a4b35-0777-4c43-9105-874ab44ff8bf",
+        "name": "\"nodesInitialized\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392024065125,
+        "endTime": 1803392024081291
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "16b6192a-6606-497d-a932-57312108fff7",
+        "logId": "5f9e7eda-0b58-4479-8f33-20dbc6fbe171"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "5f9e7eda-0b58-4479-8f33-20dbc6fbe171",
+        "name": "\"nodesInitialized\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392024065125,
+        "endTime": 1803392024081291
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "dd3a4b35-0777-4c43-9105-874ab44ff8bf"
+      }
+    },
+    {
+      "head": {
+        "id": "398fc3ad-9100-4b78-9921-ecd912477b3e",
+        "name": "Hvigor init with startParameters:{\n  hvigorfileTypeCheck: false,\n  parallelExecution: true,\n  incrementalExecution: true,\n  printStackTrace: false,\n  daemon: false,\n  analyze: 0,\n  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },\n  optimizationStrategy: 'memory',\n  hotCompile: undefined,\n  hotReloadBuild: undefined\n}",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392024176750
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "9379537f-642e-4207-b734-1665850bb4e4",
+        "name": "Since current hvigor version 6.0.6 differs from last hvigor version \n      undefined, delete file-cache.json and task-cache.json.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392024459666
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "c4576196-bdf3-4da7-bc08-6546f10f3f15",
+        "name": "Cache service initialization finished in 1 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392024992125
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "4e3ba4ab-a72f-4444-809e-cc89ba8930dd",
+        "name": "create hvigor project model",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392021418291,
+        "endTime": 1803392025112458
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "a97ae1cb-ae1c-40cc-bafd-754ba8be5895"
+      }
+    },
+    {
+      "head": {
+        "id": "7c4df55c-42d1-452c-aa9d-604c5f49181f",
+        "name": "init configuration",
+        "description": "Initialize configuration.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025267291,
+        "endTime": 1803392025275916
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "2d059a88-57dd-4f37-b053-eb987eed83ab",
+        "logId": "72ae173b-8b84-4347-a11e-7682dbb38bfc"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "26cff562-4de5-421a-a546-329c6b27aeb7",
+        "name": "configure project task",
+        "description": "Configure project task.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025291291,
+        "endTime": 1803392025547541
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "2d059a88-57dd-4f37-b053-eb987eed83ab",
+        "logId": "1287448b-c86e-4300-99ee-a936e797bef6"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "10346ce4-3242-4152-b72e-14182bef27d0",
+        "name": "eval project",
+        "description": "Evaluate project.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025592500
+      },
+      "additional": {
+        "children": [
+          "ec49a6a5-2b1a-45d7-8889-33778b1e922d",
+          "6e072712-a046-478f-a89f-a2189e8da4ea"
+        ],
+        "state": "running",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "2d059a88-57dd-4f37-b053-eb987eed83ab"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "72ae173b-8b84-4347-a11e-7682dbb38bfc",
+        "name": "init configuration",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025267291,
+        "endTime": 1803392025275916
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "7c4df55c-42d1-452c-aa9d-604c5f49181f"
+      }
+    },
+    {
+      "head": {
+        "id": "1287448b-c86e-4300-99ee-a936e797bef6",
+        "name": "configure project task",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025291291,
+        "endTime": 1803392025547541
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "26cff562-4de5-421a-a546-329c6b27aeb7"
+      }
+    },
+    {
+      "head": {
+        "id": "ec49a6a5-2b1a-45d7-8889-33778b1e922d",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025666416,
+        "endTime": 1803392025678416
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "10346ce4-3242-4152-b72e-14182bef27d0",
+        "logId": "1abb10e2-5bd3-46d4-afc4-63c54d564125"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "1abb10e2-5bd3-46d4-afc4-63c54d564125",
+        "name": "\"beforeNodeEvaluate\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025666416,
+        "endTime": 1803392025678416
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "ec49a6a5-2b1a-45d7-8889-33778b1e922d"
+      }
+    },
+    {
+      "head": {
+        "id": "6e072712-a046-478f-a89f-a2189e8da4ea",
+        "name": "eval hvigorfile",
+        "description": "Evaluate hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025787041
+      },
+      "additional": {
+        "children": [
+          "e251a1f9-7c4d-4f3d-bf03-5af19898c12c",
+          "14b4ec1b-66b8-40c5-8145-839bde231db5"
+        ],
+        "state": "running",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "10346ce4-3242-4152-b72e-14182bef27d0"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "e251a1f9-7c4d-4f3d-bf03-5af19898c12c",
+        "name": "require hvigorfile",
+        "description": "Require hvigorfile.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025787500,
+        "endTime": 1803392769336833
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "6e072712-a046-478f-a89f-a2189e8da4ea",
+        "logId": "6890c705-b725-4f39-87a3-428a48fb66ef"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "14b4ec1b-66b8-40c5-8145-839bde231db5",
+        "name": "bind plugins",
+        "description": "Bind plugins.",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392769355291
+      },
+      "additional": {
+        "children": [],
+        "state": "running",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "6e072712-a046-478f-a89f-a2189e8da4ea"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "ef963294-a1d7-40eb-81f6-b787a1396605",
+        "name": "hvigorfile, resolving /Users/canyonwan/Documents/me/hamoryOS/treehole/treehole/hvigorfile.ts",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025789125
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "a05a8f7c-8db5-4081-9400-e958f98f87b2",
+        "name": "hvigorfile, require result:  { default: { system: [Function: appTasks], plugins: [] } }",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392769026958
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "6890c705-b725-4f39-87a3-428a48fb66ef",
+        "name": "require hvigorfile",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392025787500,
+        "endTime": 1803392769336833
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "e251a1f9-7c4d-4f3d-bf03-5af19898c12c"
+      }
+    },
+    {
+      "head": {
+        "id": "38e5a3a2-532f-4a22-a0d8-fd2d48188c6c",
+        "name": "hvigorfile, binding system plugins [Function: appTasks]",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392769419000
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "6a373377-ec25-46c3-a796-846fd3e34c76",
+        "name": "Start initialize project's product build option map with build mode debug.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392868136500
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "877df053-d821-4e95-965e-30a94083756d",
+        "name": "Picking option from product 'default' with build mode 'debug'.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392868232875
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "c1e6fd79-64dc-4a38-951c-4ba550dedd38",
+        "name": "Product 'default' build option initialized",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392868450666
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "ae102a06-1de8-4b90-af19-834bc857d20e",
+        "name": "End initialize project's product build option map with build mode 'debug'.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392868557083
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b8effe83-56c6-4abc-b598-b177159ffa1e",
+        "name": "hvigor build process will be closed with an error.",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392871872833
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "f194fd0d-e1fe-4dd2-9f8a-30660070faf0",
+        "name": "\u001b[31m00303217 Configuration Error\nError Message: Invalid value of 'DEVECO_SDK_HOME' in the system environment path.\n\n* Try the following:\n  > Correct the value, run hvigorw --stop-daemon to stop the daemon process, and then try again.\n\u001b[39m\n\n\u001b[31m* Try:\n> Run with --stacktrace option to get the stack trace.\n> Run with --debug option to get more log output.\n",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392871974000
+      },
+      "additional": {
+        "logType": "error",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b056ede9-9877-425e-b7c5-55d516c5cd47",
+        "name": "ERROR: stacktrace = AdaptorError: \u001b[31m00303217 Configuration Error\nError Message: Invalid value of 'DEVECO_SDK_HOME' in the system environment path.\n\n* Try the following:\n  > Correct the value, run hvigorw --stop-daemon to stop the daemon process, and then try again.\n\u001b[39m\n    at OhosLogger.printErrorExit (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor/src/base/log/hvigor-log.js:1:5069)\n    at Property.validatePath (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/sdk/lib/property-get.js:1:2027)\n    at Property.getHosSdkDir (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/sdk/lib/property-get.js:1:1395)\n    at SdkLoader.getSdkInfo (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/sdk/sdk-loader.js:1:668)\n    at new ProjectTaskService (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/tasks/service/project-task-service.js:1:2010)\n    at AppPlugin.initTaskService (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/plugin/app-plugin.js:1:715)\n    at ProjectImpl.<anonymous> (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor-ohos-plugin/src/plugin/factory/plugin-factory.js:1:2502)\n    at ProjectImpl.executeAfterBindSystemPluginsHook (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor/src/base/internal/lifecycle/hvigor-node-impl/default-node-impl.js:1:5526)\n    at evaluateNodeVigorFile (/Applications/DevEco-Studio.app/Contents/tools/hvigor/hvigor/src/base/internal/lifecycle/configuration.js:1:9135)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392872845583
+      },
+      "additional": {
+        "logType": "debug",
+        "children": []
+      }
+    },
+    {
+      "head": {
+        "id": "b135395e-023d-4473-8cb5-f3bca26b35d2",
+        "name": "\"buildFinished\" hook function",
+        "description": "",
+        "type": "duration"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392873167416,
+        "endTime": 1803392873238083
+      },
+      "additional": {
+        "children": [],
+        "state": "success",
+        "targetName": "",
+        "moduleName": "",
+        "category": "",
+        "taskRunReasons": [],
+        "parent": "bdb519b6-5a5a-4adb-a15d-eecc73defa6b",
+        "logId": "a6f9678e-e6a0-45b3-8efd-58509febdeef"
+      },
+      "log": {
+        "_logger": {
+          "category": "DurationEvent",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "_filelogger": {
+          "category": "debug-file",
+          "context": {},
+          "callStackSkipIndex": 0
+        },
+        "anonymizeFileLogger": {
+          "fileLogger": {
+            "category": "debug-file",
+            "context": {},
+            "callStackSkipIndex": 0
+          }
+        }
+      }
+    },
+    {
+      "head": {
+        "id": "a6f9678e-e6a0-45b3-8efd-58509febdeef",
+        "name": "\"buildFinished\" hook function",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392873167416,
+        "endTime": 1803392873238083
+      },
+      "additional": {
+        "logType": "info",
+        "children": [],
+        "durationId": "b135395e-023d-4473-8cb5-f3bca26b35d2"
+      }
+    },
+    {
+      "head": {
+        "id": "710b30cc-5277-4352-9520-ad18e1aede41",
+        "name": "assembleHap",
+        "description": "",
+        "type": "mark"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392020942333,
+        "endTime": 1803392873762500
+      },
+      "additional": {
+        "time": {
+          "year": 2025,
+          "month": 10,
+          "day": 24,
+          "hour": 10,
+          "minute": 2,
+          "second": 52
+        },
+        "completeCommand": "{\"prop\":[\"module=default@default\",\"product=default\"],\"mode\":\"module\",\"daemon\":false,\"_\":[\"assembleHap\"]};--mode module -p module=default@default -p product=default assembleHap --no-daemon",
+        "hvigorVersion": "6.0.6",
+        "markType": "history",
+        "nodeVersion": "v18.20.1",
+        "category": "build",
+        "state": "failed"
+      }
+    },
+    {
+      "head": {
+        "id": "fee22b1a-d730-468e-b0f1-32a160231e41",
+        "name": "BUILD FAILED in 853 ms ",
+        "description": "",
+        "type": "log"
+      },
+      "body": {
+        "pid": 14185,
+        "tid": "Main Thread",
+        "startTime": 1803392873784625
+      },
+      "additional": {
+        "logType": "error",
+        "children": []
+      }
+    }
+  ]
+}

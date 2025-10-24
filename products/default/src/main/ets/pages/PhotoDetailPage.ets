@@ -57,8 +57,8 @@ struct PhotoDetailPage {
         ]
       });
       
-      if (result.index === 1 && photo.id) {
-        await this.photoService.deletePhoto(photo.id, photo.filePath);
+      if (result.index === 1 && photo.photoId) {
+        await this.photoService.deletePhoto(photo.photoId);
         
         // 如果删除后没有照片了，返回上一页
         if (this.photos.length === 1) {
@@ -99,7 +99,7 @@ struct PhotoDetailPage {
         Swiper() {
           ForEach(this.photos, (photo: PhotoModel) => {
             Stack() {
-              Image(photo.filePath)
+              Image(photo.url)
                 .width('100%')
                 .height('100%')
                 .objectFit(ImageFit.Contain)
@@ -124,7 +124,7 @@ struct PhotoDetailPage {
             }
             .width('100%')
             .height('100%')
-          }, (photo: PhotoModel) => photo.id?.toString())
+          }, (photo: PhotoModel) => photo.photoId)
         }
         .index(this.currentIndex)
         .indicator(false)
@@ -202,7 +202,7 @@ struct PhotoDetailPage {
               .margin({ bottom: AppTheme.SPACING_SMALL })
           }
 
-          Text(this.formatDate(this.photos[this.currentIndex].createTime))
+          Text(this.formatDate(this.photos[this.currentIndex].uploadedAt))
             .fontSize(AppTheme.FONT_SIZE_SMALL)
             .fontColor(AppTheme.TEXT_WHITE)
             .opacity(0.8)

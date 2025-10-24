@@ -15,7 +15,7 @@ struct DiaryEditPage {
   @State diaryId: number = 0;
   @State title: string = '';
   @State content: string = '';
-  @State selectedMood: string = MoodType.HAPPY;
+  @State selectedMood: MoodType = 'happy';
   @State tags: string[] = [];
   @State isLoading: boolean = false;
   @State isSaving: boolean = false;
@@ -36,12 +36,12 @@ struct DiaryEditPage {
   async loadDiary() {
     try {
       this.isLoading = true;
-      const diary = await this.diaryService.getDiaryById(this.diaryId);
+      const diary = await this.diaryService.getDiaryById(this.diaryId.toString());
       if (diary) {
-        this.title = diary.title;
+        this.title = diary.title ?? '';
         this.content = diary.content;
         this.selectedMood = diary.mood;
-        this.tags = this.diaryService.parseTags(diary.tags);
+        this.tags = diary.tags;
         logger.info('DiaryEditPage', 'Diary loaded');
       }
     } catch (err) {
@@ -67,7 +67,7 @@ struct DiaryEditPage {
       if (this.diaryId) {
         // 更新现有日记
         await this.diaryService.updateDiary(
-          this.diaryId,
+          this.diaryId.toString(),
           this.title.trim() || '无标题',
           this.content.trim(),
           this.selectedMood,

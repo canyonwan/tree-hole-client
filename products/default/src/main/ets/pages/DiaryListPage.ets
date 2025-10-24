@@ -48,8 +48,8 @@ export struct DiaryListPage {
         ]
       });
       
-      if (result.index === 1 && diary.id) {
-        await this.diaryService.deleteDiary(diary.id);
+      if (result.index === 1 && diary.diaryId) {
+        await this.diaryService.deleteDiary(diary.diaryId);
         await this.loadDiaries();
         UIUtils.showSuccess('已删除');
       }
@@ -137,7 +137,7 @@ export struct DiaryListPage {
             .onClick(() => {
               router.pushUrl({
                 url: 'pages/DiaryEditPage',
-                params: { diaryId: diary.id }
+                params: { diaryId: diary.diaryId }
               }).catch((err: Error) => {
                 logger.error('DiaryListPage', `Router failed: ${err.message}`);
               });
@@ -148,7 +148,7 @@ export struct DiaryListPage {
                   this.deleteDiary(diary);
                 })
             )
-          }, (diary: DiaryModel) => diary.id?.toString())
+          }, (diary: DiaryModel) => diary.diaryId ?? '')
         }
         .width('100%')
         .height('100%')
@@ -198,12 +198,12 @@ export struct DiaryListPage {
         
         // 日期显示
         Column() {
-          Text(new Date(diary.createTime).getDate().toString())
+          Text(new Date(diary.createdAt).getDate().toString())
             .fontSize(18)
             .fontWeight(FontWeight.Bold)
             .fontColor(AppTheme.PRIMARY_COLOR)
           
-          Text(this.formatDate(diary.createTime).substring(0, 2))
+          Text(this.formatDate(diary.createdAt).substring(0, 2))
             .fontSize(11)
             .fontColor(AppTheme.TEXT_PLACEHOLDER)
         }
@@ -234,7 +234,7 @@ export struct DiaryListPage {
             .layoutWeight(1)
           
           // 时间标签
-          Text(this.formatTime(diary.createTime))
+          Text(this.formatTime(diary.createdAt))
             .fontSize(11)
             .fontColor(AppTheme.TEXT_PLACEHOLDER)
             .backgroundColor(AppTheme.TEXT_PLACEHOLDER + '15')
@@ -252,12 +252,12 @@ export struct DiaryListPage {
           .lineHeight(19)
           .maxLines(2)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-          .margin({ bottom: diary.tags && diary.tags !== '[]' ? 8 : 0 })
+          .margin({ bottom: diary.tags && diary.tags.length > 0 ? 8 : 0 })
 
         // 标签
-        if (diary.tags && diary.tags !== '[]') {
+        if (diary.tags && diary.tags.length > 0) {
           Flex({ wrap: FlexWrap.Wrap }) {
-            ForEach(this.diaryService.parseTags(diary.tags).slice(0, 3), (tag: string, idx: number) => {
+            ForEach(diary.tags.slice(0, 3), (tag: string, idx: number) => {
               Row() {
                 Text('#')
                   .fontSize(10)

@@ -41,11 +41,10 @@ export struct PhotoGridPage {
       const uris = await this.photoService.selectPhotos();
       
       if (uris && uris.length > 0) {
-        UIUtils.showLoading('正在保存...');
+        UIUtils.showLoading('正在上传...');
         
-        for (const uri of uris) {
-          await this.photoService.savePhoto(uri, '');
-        }
+        // 批量上传照片
+        await this.photoService.batchUploadPhotos(uris);
         
         await this.loadPhotos();
         UIUtils.showSuccess('添加成功');
@@ -70,8 +69,8 @@ export struct PhotoGridPage {
         ]
       });
       
-      if (result.index === 1 && photo.id) {
-        await this.photoService.deletePhoto(photo.id, photo.filePath);
+      if (result.index === 1 && photo.photoId) {
+        await this.photoService.deletePhoto(photo.photoId);
         await this.loadPhotos();
         UIUtils.showSuccess('已删除');
       }
@@ -120,7 +119,7 @@ export struct PhotoGridPage {
           ForEach(this.photos, (photo: PhotoModel, index: number) => {
             GridItem() {
               Stack() {
-                Image(photo.filePath)
+                Image(photo.url)
                   .width('100%')
                   .height('100%')
                   .objectFit(ImageFit.Cover)
@@ -147,7 +146,7 @@ export struct PhotoGridPage {
               router.pushUrl({
                 url: 'pages/PhotoDetailPage',
                 params: {
-                  photoId: photo.id,
+                  photoId: photo.photoId,
                   currentIndex: index
                 }
               }).catch((err: Error) => {
@@ -160,7 +159,7 @@ export struct PhotoGridPage {
                   this.deletePhoto(photo);
                 })
             )
-          }, (photo: PhotoModel) => photo.id?.toString())
+          }, (photo: PhotoModel) => photo.photoId)
         }
         .columnsTemplate('1fr 1fr 1fr')
         .columnsGap(AppTheme.SPACING_SMALL)

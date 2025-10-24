@@ -1,8 +1,8 @@
 import { relationalStore } from '@kit.ArkData';
 import { Logger } from '@ohos/common';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { DiaryModel } from '../models/DiaryModel';
-import { PhotoModel } from '../models/PhotoModel';
+import { LocalDiaryModel } from '../models/DiaryModel';
+import { LocalPhotoModel } from '../models/PhotoModel';
 
 const logger: Logger = new Logger();
 const DB_NAME = 'SecretSpace.db';
@@ -85,13 +85,13 @@ export class DatabaseHelper {
   /**
    * 插入日记
    */
-  public async insertDiary(diary: DiaryModel): Promise<number> {
+  public async insertDiary(diary: LocalDiaryModel): Promise<number> {
     if (!this.store) {
       throw new Error('Database not initialized');
     }
 
     const valueBucket: relationalStore.ValuesBucket = {
-      title: diary.title,
+      title: diary.title ?? '',
       content: diary.content,
       mood: diary.mood,
       tags: diary.tags,
@@ -105,13 +105,13 @@ export class DatabaseHelper {
   /**
    * 更新日记
    */
-  public async updateDiary(diary: DiaryModel): Promise<number> {
+  public async updateDiary(diary: LocalDiaryModel): Promise<number> {
     if (!this.store || !diary.id) {
       throw new Error('Database not initialized or diary id is missing');
     }
 
     const valueBucket: relationalStore.ValuesBucket = {
-      title: diary.title,
+      title: diary.title ?? '',
       content: diary.content,
       mood: diary.mood,
       tags: diary.tags,
@@ -141,7 +141,7 @@ export class DatabaseHelper {
   /**
    * 查询所有日记
    */
-  public async queryAllDiaries(): Promise<DiaryModel[]> {
+  public async queryAllDiaries(): Promise<LocalDiaryModel[]> {
     if (!this.store) {
       throw new Error('Database not initialized');
     }
@@ -150,15 +150,16 @@ export class DatabaseHelper {
     predicates.orderByDesc('createTime');
 
     const resultSet = await this.store.query(predicates);
-    const diaries: DiaryModel[] = [];
+    const diaries: LocalDiaryModel[] = [];
 
     while (resultSet.goToNextRow()) {
-      const diary: DiaryModel = {
+      const tagsIndex = resultSet.getColumnIndex('tags');
+      const diary: LocalDiaryModel = {
         id: resultSet.getLong(resultSet.getColumnIndex('id')),
         title: resultSet.getString(resultSet.getColumnIndex('title')),
         content: resultSet.getString(resultSet.getColumnIndex('content')),
         mood: resultSet.getString(resultSet.getColumnIndex('mood')),
-        tags: resultSet.getString(resultSet.getColumnIndex('tags')),
+        tags: resultSet.isColumnNull(tagsIndex) ? '' : resultSet.getString(tagsIndex),
         createTime: resultSet.getLong(resultSet.getColumnIndex('createTime')),
         updateTime: resultSet.getLong(resultSet.getColumnIndex('updateTime'))
       };
@@ -172,7 +173,7 @@ export class DatabaseHelper {
   /**
    * 根据ID查询日记
    */
-  public async queryDiaryById(id: number): Promise<DiaryModel | null> {
+  public async queryDiaryById(id: number): Promise<LocalDiaryModel | null> {
     if (!this.store) {
       throw new Error('Database not initialized');
     }
@@ -181,15 +182,16 @@ export class DatabaseHelper {
     predicates.equalTo('id', id);
 
     const resultSet = await this.store.query(predicates);
-    let diary: DiaryModel | null = null;
+    let diary: LocalDiaryModel | null = null;
 
     if (resultSet.goToFirstRow()) {
+      const tagsIndex = resultSet.getColumnIndex('tags');
       diary = {
         id: resultSet.getLong(resultSet.getColumnIndex('id')),
         title: resultSet.getString(resultSet.getColumnIndex('title')),
         content: resultSet.getString(resultSet.getColumnIndex('content')),
         mood: resultSet.getString(resultSet.getColumnIndex('mood')),
-        tags: resultSet.getString(resultSet.getColumnIndex('tags')),
+        tags: resultSet.isColumnNull(tagsIndex) ? '' : resultSet.getString(tagsIndex),
         createTime: resultSet.getLong(resultSet.getColumnIndex('createTime')),
         updateTime: resultSet.getLong(resultSet.getColumnIndex('updateTime'))
       };
@@ -202,14 +204,14 @@ export class DatabaseHelper {
   /**
    * 插入照片
    */
-  public async insertPhoto(photo: PhotoModel): Promise<number> {
+  public async insertPhoto(photo: LocalPhotoModel): Promise<number> {
     if (!this.store) {
       throw new Error('Database not initialized');
     }
 
     const valueBucket: relationalStore.ValuesBucket = {
       filePath: photo.filePath,
-      description: photo.description,
+      description: photo.description || '',
       createTime: photo.createTime
     };
 
@@ -233,7 +235,7 @@ export class DatabaseHelper {
   /**
    * 查询所有照片
    */
-  public async queryAllPhotos(): Promise<PhotoModel[]> {
+  public async queryAllPhotos(): Promise<LocalPhotoModel[]> {
     if (!this.store) {
       throw new Error('Database not initialized');
     }
@@ -242,13 +244,14 @@ export class DatabaseHelper {
     predicates.orderByDesc('createTime');
 
     const resultSet = await this.store.query(predicates);
-    const photos: PhotoModel[] = [];
+    const photos: LocalPhotoModel[] = [];
 
     while (resultSet.goToNextRow()) {
-      const photo: PhotoModel = {
+      const descIndex = resultSet.getColumnIndex('description');
+      const photo: LocalPhotoModel = {
         id: resultSet.getLong(resultSet.getColumnIndex('id')),
         filePath: resultSet.getString(resultSet.getColumnIndex('filePath')),
-        description: resultSet.getString(resultSet.getColumnIndex('description')),
+        description: resultSet.isColumnNull(descIndex) ? '' : resultSet.getString(descIndex),
         createTime: resultSet.getLong(resultSet.getColumnIndex('createTime'))
       };
       photos.push(photo);

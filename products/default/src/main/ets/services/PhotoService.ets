@@ -1,32 +1,41 @@
-import { DatabaseHelper } from '../database/DatabaseHelper';
-import { PhotoModel } from '../models/PhotoModel';
 import { Logger } from '@ohos/common';
-import { fileIo } from '@kit.CoreFileKit';
 import { picker } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { HttpClient, PageResponse } from '../utils/HttpClient';
+import { PhotoModel } from '../models/PhotoModel';
+import {
+  PhotoResponse,
+  BatchUploadResponse,
+  BatchUploadPhotoItem,
+  PhotoListParams,
+  PhotoStatsResponse,
+  BatchDeleteRequest,
+  BatchDeleteResponse,
+  SuccessResponse
+} from '../models/ApiTypes';
 
 const logger: Logger = new Logger();
 
 /**
- * 相册业务服务类
+ * 相册业务服务类 - 对接后端 API
  */
 export class PhotoService {
-  private dbHelper: DatabaseHelper;
+  private httpClient: HttpClient;
   private context: Context;
 
   constructor(context: Context) {
     this.context = context;
-    this.dbHelper = DatabaseHelper.getInstance(context);
+    this.httpClient = HttpClient.getInstance(context);
   }
 
   /**
    * 选择图片
    */
-  public async selectPhotos(): Promise<string[]> {
+  public async selectPhotos(maxCount: number = 9): Promise<string[]> {
     try {
       const photoSelectOptions = new picker.PhotoSelectOptions();
       photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-      photoSelectOptions.maxSelectNumber = 9;
+      photoSelectOptions.maxSelectNumber = maxCount;
 
       const photoViewPicker = new picker.PhotoViewPicker();
       const photoSelectResult = await photoViewPicker.select(photoSelectOptions);
@@ -40,61 +49,162 @@ export class PhotoService {
   }
 
   /**
-   * 保存照片到应用目录
+   * 上传单张照片
    */
-  public async savePhoto(sourceUri: string, description: string = ''): Promise<number> {
+  public async uploadPhoto(filePath: string, description?: string, takenAt?: number): Promise<PhotoResponse> {
     try {
-      // 获取应用私有目录
-      const filesDir = this.context.filesDir;
-      const photoDir = `${filesDir}/photos`;
-
-      // 创建photos目录（如果不存在）
-      if (!fileIo.accessSync(photoDir)) {
-        fileIo.mkdirSync(photoDir);
+      const extraData: Record<string, string> = {};
+      if (description) {
+        extraData.description = description;
+      }
+      if (takenAt) {
+        extraData.takenAt = String(takenAt);
       }
 
-      // 生成唯一文件名
-      const timestamp = Date.now();
-      const fileName = `photo_${timestamp}.jpg`;
-      const destPath = `${photoDir}/${fileName}`;
-
-      // 复制文件到应用目录
-      fileIo.copyFileSync(sourceUri, destPath);
-
-      // 保存到数据库
-      const photo: PhotoModel = {
-        filePath: destPath,
-        description,
-        createTime: timestamp
-      };
-
-      const id = await this.dbHelper.insertPhoto(photo);
-      logger.info('PhotoService', `Photo saved with id: ${id}`);
-      return id;
+      const response = await this.httpClient.uploadFile<PhotoResponse>('/photos', filePath, 'file', extraData);
+      logger.info('PhotoService', `Photo uploaded: ${response.data.photoId}`);
+      return response.data;
     } catch (err) {
       const error = err as BusinessError;
-      logger.error('PhotoService', `Failed to save photo: ${error.message}`);
-      throw new Error(`Failed to save photo: ${error.message}`);
+      logger.error('PhotoService', `Failed to upload photo: ${error.message}`);
+      throw new Error(`Failed to upload photo: ${error.message}`);
+    }
+  }
+
+  /**
+   * 批量上传照片
+   */
+  public async batchUploadPhotos(filePaths: string[]): Promise<BatchUploadResponse> {
+    try {
+      // 注意：这里需要根据后端实际实现调整
+      // 可能需要多次调用单张上传，或者使用特殊的批量上传接口
+      const uploadPromises = filePaths.map(filePath => this.uploadPhoto(filePath));
+      const results = await Promise.allSettled(uploadPromises);
+
+      const successResults: PhotoResponse[] = [];
+      let successCount = 0;
+      let failedCount = 0;
+
+      results.forEach(result => {
+        if (result.status === 'fulfilled') {
+          successResults.push(result.value);
+          successCount++;
+        } else {
+          failedCount++;
+          logger.error('PhotoService', `Upload failed: ${result.reason}`);
+        }
+      });
+
+      const photoItems: BatchUploadPhotoItem[] = successResults.map((photo: PhotoResponse): BatchUploadPhotoItem => {
+        const item: BatchUploadPhotoItem = {
+          photoId: photo.photoId,
+          url: photo.url,
+          thumbnailUrl: photo.thumbnailUrl
+        };
+        return item;
+      });
+
+      const batchResponse: BatchUploadResponse = {
+        totalCount: filePaths.length,
+        successCount,
+        failedCount,
+        photos: photoItems
+      };
+
+      logger.info('PhotoService', `Batch upload: ${successCount}/${filePaths.length} succeeded`);
+      return batchResponse;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to batch upload photos: ${error.message}`);
+      throw new Error(`Failed to batch upload photos: ${error.message}`);
+    }
+  }
+
+  /**
+   * 获取照片列表
+   */
+  public async getPhotoList(params?: PhotoListParams): Promise<PageResponse<PhotoResponse>> {
+    try {
+      const queryParams: Record<string, string | number | boolean> = {};
+      
+      if (params) {
+        if (params.page !== undefined) queryParams.page = params.page;
+        if (params.pageSize !== undefined) queryParams.pageSize = params.pageSize;
+        if (params.startDate) queryParams.startDate = params.startDate;
+        if (params.endDate) queryParams.endDate = params.endDate;
+        if (params.sortBy) queryParams.sortBy = params.sortBy;
+        if (params.sortOrder) queryParams.sortOrder = params.sortOrder;
+      }
+
+      const response = await this.httpClient.get<PageResponse<PhotoResponse>>('/photos', queryParams);
+      logger.info('PhotoService', `Got ${response.data.items.length} photos`);
+      return response.data;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get photo list: ${error.message}`);
+      throw new Error(`Failed to get photo list: ${error.message}`);
+    }
+  }
+
+  /**
+   * 获取所有照片（用于兼容旧代码）
+   */
+  public async getAllPhotos(): Promise<PhotoModel[]> {
+    try {
+      const response = await this.getPhotoList({ page: 1, pageSize: 1000 });
+      return response.items;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get all photos: ${error.message}`);
+      throw new Error(`Failed to get all photos: ${error.message}`);
+    }
+  }
+
+  /**
+   * 获取照片详情
+   */
+  public async getPhotoById(photoId: string): Promise<PhotoResponse> {
+    try {
+      const response = await this.httpClient.get<PhotoResponse>(`/photos/${photoId}`);
+      logger.info('PhotoService', `Got photo: ${photoId}`);
+      return response.data;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get photo: ${error.message}`);
+      throw new Error(`Failed to get photo: ${error.message}`);
+    }
+  }
+
+  /**
+   * 更新照片信息
+   */
+  public async updatePhoto(photoId: string, description: string): Promise<PhotoResponse> {
+    try {
+      interface UpdatePhotoRequest {
+        description: string;
+      }
+      const request: UpdatePhotoRequest = {
+        description
+      };
+
+      const response = await this.httpClient.put<PhotoResponse>(`/photos/${photoId}`, request);
+      logger.info('PhotoService', `Photo updated: ${photoId}`);
+      return response.data;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to update photo: ${error.message}`);
+      throw new Error(`Failed to update photo: ${error.message}`);
     }
   }
 
   /**
    * 删除照片
    */
-  public async deletePhoto(id: number, filePath: string): Promise<void> {
+  public async deletePhoto(photoId: string): Promise<boolean> {
     try {
-      // 删除文件
-      try {
-        if (fileIo.accessSync(filePath)) {
-          fileIo.unlinkSync(filePath);
-        }
-      } catch (err) {
-        logger.warn('PhotoService', `File not found or already deleted: ${filePath}`);
-      }
-
-      // 从数据库删除
-      await this.dbHelper.deletePhoto(id);
-      logger.info('PhotoService', `Photo deleted: ${id}`);
+      const response = await this.httpClient.delete<SuccessResponse>(`/photos/${photoId}`);
+      logger.info('PhotoService', `Photo deleted: ${photoId}`);
+      return response.data.success;
     } catch (err) {
       const error = err as BusinessError;
       logger.error('PhotoService', `Failed to delete photo: ${error.message}`);
@@ -103,16 +213,87 @@ export class PhotoService {
   }
 
   /**
-   * 获取所有照片
+   * 批量删除照片
    */
-  public async getAllPhotos(): Promise<PhotoModel[]> {
+  public async batchDeletePhotos(photoIds: string[]): Promise<BatchDeleteResponse> {
     try {
-      return await this.dbHelper.queryAllPhotos();
+      const request: BatchDeleteRequest = {
+        photoIds
+      };
+
+      const response = await this.httpClient.delete<BatchDeleteResponse>('/photos/batch', request);
+      logger.info('PhotoService', `Batch deleted ${response.data.deletedCount} photos`);
+      return response.data;
     } catch (err) {
       const error = err as BusinessError;
-      logger.error('PhotoService', `Failed to get photos: ${error.message}`);
-      throw new Error(`Failed to get photos: ${error.message}`);
+      logger.error('PhotoService', `Failed to batch delete photos: ${error.message}`);
+      throw new Error(`Failed to batch delete photos: ${error.message}`);
+    }
+  }
+
+  /**
+   * 获取照片统计
+   */
+  public async getPhotoStats(): Promise<PhotoStatsResponse> {
+    try {
+      const response = await this.httpClient.get<PhotoStatsResponse>('/photos/stats');
+      logger.info('PhotoService', `Got photo stats: ${response.data.totalPhotos} photos`);
+      return response.data;
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get photo stats: ${error.message}`);
+      throw new Error(`Failed to get photo stats: ${error.message}`);
+    }
+  }
+
+  /**
+   * 按日期范围获取照片
+   */
+  public async getPhotosByDateRange(
+    startDate: number,
+    endDate: number,
+    page: number = 1,
+    pageSize: number = 30
+  ): Promise<PageResponse<PhotoResponse>> {
+    try {
+      const params: PhotoListParams = {
+        startDate,
+        endDate,
+        page,
+        pageSize
+      };
+
+      return await this.getPhotoList(params);
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to get photos by date range: ${error.message}`);
+      throw new Error(`Failed to get photos by date range: ${error.message}`);
+    }
+  }
+
+  /**
+   * 选择并上传照片（一站式方法）
+   */
+  public async selectAndUploadPhotos(maxCount: number = 9): Promise<BatchUploadResponse> {
+    try {
+      // 1. 选择照片
+      const photoUris = await this.selectPhotos(maxCount);
+      
+      if (photoUris.length === 0) {
+        return {
+          totalCount: 0,
+          successCount: 0,
+          failedCount: 0,
+          photos: []
+        };
+      }
+
+      // 2. 上传照片
+      return await this.batchUploadPhotos(photoUris);
+    } catch (err) {
+      const error = err as BusinessError;
+      logger.error('PhotoService', `Failed to select and upload photos: ${error.message}`);
+      throw new Error(`Failed to select and upload photos: ${error.message}`);
     }
   }
 }
-
